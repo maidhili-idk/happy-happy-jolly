@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mowaaa</title>
+<style>
+body {
+  margin: 0;
+  background: rgb(196, 189, 189);
+  color: rgb(169, 111, 111);
+  font-family: Georgia, serif;
+  text-align: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+html, body {
+  height: 100%;
+}
+
+.screen {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  padding: 40px 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  transition: opacity 0.6s ease;
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+#screen6 {
+  overflow-y: auto;
+  align-items: flex-start;
+  padding-top: 60px;
+}
+
+img {
+  max-width: 90%;
+  height: auto;
+}
+button {
+  padding: 12px 25px;
+  margin: 15px;
+  border-radius: 20px;
+  border: none;
+  background: #f3c6ff;
+  cursor: pointer;
+  font-size: 16px;
+}
+h1 {
+  font-weight: normal;
+}
+#finalMessage {
+  font-size: 28px;
+  margin-top: 40px;
+  animation: glow 1s infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 10px pink; }
+  to { text-shadow: 0 0 25px yellow; }
+}
+
+.album {
+  margin-top: 40px;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 20px;
+
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  scroll-snap-type: x mandatory;
+}
+
+.album::-webkit-scrollbar {
+  height: 8px;
+}
+.album::-webkit-scrollbar-thumb {
+  background: #f3c6ff;
+  border-radius: 10px;
+}
+
+.photo {
+  background: white;
+  padding: 10px;
+  border-radius: 15px;
+  width: 170px;
+  min-width: 170px; /* prevents shrinking on mobile */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  scroll-snap-align: center;
+}
+
+.photo img {
+  width: 100%;
+  height: 220px;      /* fixed height */
+  object-fit: cover;  /* crop instead of stretch */
+  border-radius: 10px;
+}
+
+.photo p {
+  font-size: 14px;
+  margin-top: 8px;
+  color: black;
+}
+
+.photo:hover {
+  transform: rotate(-3deg) scale(1.05);
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 600px) {
+  .album {
+    gap: 12px;
+    padding: 12px;
+    flex-wrap: wrap;          
+    justify-content: center;   
+    overflow-x: visible;     
+  }
+
+  .photo {
+    width: 140px;
+    min-width: 140px;
+  }
+
+  .photo img {
+    height: 170px;
+  }
+
+  .photo p {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+  #finalMessage {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 768px) {
+  .album {
+    justify-content: center;
+    overflow-x: visible;
+    flex-wrap: wrap;
+  }
+
+  .photo {
+    min-width: 200px;
+    width: 200px;
+  }
+}
+
+
+</style>
+</head>
+
+<body>
+    <!-- PASSWORD SCREEN -->
+<div id="lockScreen" style="
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+  background: rgb(196,189,189);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+">
+
+  <h1>Enter Password 😌</h1>
+
+  <input type="password" id="passwordInput"
+    placeholder="Type here..."
+    style="padding:10px; border-radius:10px; border:none; margin:10px;">
+
+  <button onclick="checkPassword()">Unlock </button>
+
+  <p id="errorMsg" style="color:red;"></p>
+
+</div>
+
+
+<!-- <audio files-->
+
+<audio id="musicFinal" loop>
+  <source src="final erupu rangu song.wav" type="audio/wav">
+</audio>
+
+<audio id="musicSix" loop>
+  <source src="Locha final song.wav" type="audio/wav">
+</audio>
+
+
+
+<!-- SCREEN 1 -->
+<div class="screen active" id="screen1">
+  <div class="container">
+  <h1>Enti ra sangathulu😌</h1>
+  <img src="1st pic.png" style="max-width:250px; width:90%;">
+  <p>sarle, neekosam okati chesanu</p>
+  <button onclick="nextScreen(2)">ento?»</button>
+  </div>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="screen" id="screen2">
+  <div class="container">
+  <h1>😎</h1>
+  <img src="2nd pic.png" style="max-width:250px; width:90%;">
+  <p>chusthava?</p>
+  <button onclick="nextScreen(3)">chusthaaa</button>
+  <button onclick= "nextScreen(5)">chudanu</button>
+  </div>
+</div>
+
+<!-- SCREEN 5 -->
+<div class="screen" id="screen5">
+  <div class="container">
+  <h1>😤</h1>
+  <img src="3rd pic.png" style="max-width:250px; width:90%;">
+  <p>Waste fellow 🤨</p>
+  <button onclick="nextScreen(3)">Sare chustha🙄</button>
+</div>
+</div>
+
+
+<!-- SCREEN 3 -->
+<div class="screen" id="screen3">
+  <div class="container">
+  <img src="5th pic.png" onclick="nextScreen(4)" style="max-width:250px; width:90%; cursor: pointer;">
+  <p>Teddy gift box click chey🎁</p>
+  </div>
+</div>
+
+<!-- screen 4 -->
+<div class="screen" id="screen4">
+  <div class="container">
+  <h1>🤭</h1>
+  <img src="6th pic.png" style="max-width:250px; width:90%;">
+  <p>Phool for my fooool🥳</p>
+  <button onclick="nextScreen(7)">😁😁»</button>
+  </div>
+</div>
+
+<!-- screen 7-->
+ <div class="screen" id="screen7">
+  <div class="container">
+  <h1>Oka Photo tesukunta</h1>
+    <img src="7th pic.png" style="max-width:250px; width:90%;">
+    <p>Say cheesee 📸</p>
+    <button onclick="nextScreen(6)">Photo»</button>
+    </div>
+ </div>
+
+<!-- FINAL SCREEN -->
+<div class="screen" id="screen6">
+  <div class="container">
+  <h1 id="finalMessage">Happy Memories </h1>
+
+ <div class="album">
+  <div class="photo"><img src="img 1.jpeg"><p>😁😁🤭</p></div>
+  <div class="photo"><img src="img 2.jpeg"><p>Teeth gone😂</p></div>
+  <div class="photo"><img src="img 8.jpeg"><p>🤙</p></div>
+  <div class="photo"><img src="img 3.jpeg"><p>First pic🙇‍♀️🙇‍♂️</p></div>
+  <div class="photo"><img src="img 4.jpeg"><p>Champesthavaa😭</p></div>
+  <div class="photo"><img src="img 5.jpeg"><p>Momoss🥟</p></div>
+  <div class="photo"><img src="img 6.jpeg"><p>Pillakala papa</p></div>
+  <div class="photo"><img src="img 10.jpeg"><p>Gundu fellow</p></div>
+  <div class="photo"><img src="img 9.jpeg"><p>😜</p></div>
+  <div class="photo"><img src="img 7.jpeg"><p>Hi phrends</p></div>
+  <div class="photo"><img src="img12.jpeg"><p>😊</p></div>
+  <div class="photo"><img src="img 11.jpeg"><p>Hero🔥</p></div>
+
+</div>
+<button onclick="nextScreen(8)">Next Screen</button>
+</div>
+</div>
+
+<!--last screen-->
+<div class="screen" id="screen8">
+  <div class="container">
+  <h1>Happy Birthday Vimaluu</h1>
+  <img src="last pic.png">
+  <p> Cake cut chesi nakuda send chey🥳🥳🎂
+  </p>
+</div>
+</div>
+
+
+<!-- Modal Overlay -->
+<div id="imageModal" style="
+  display:none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  cursor: pointer;
+">
+  <img id="modalImage" src="" alt="Enlarged photo" style="
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    box-shadow: 0 0 20px black;
+    cursor: default;
+  ">
+</div>
+
+
+<script>
+function checkPassword() {
+  let password = document.getElementById("passwordInput").value;
+
+  if(password === "HBV@21") {   // 🔐 change this to anything you want
+    document.getElementById("lockScreen").style.display = "none";
+  } else {
+    document.getElementById("errorMsg").innerText = "Wrong password ra 😏";
+  }
+}
+
+
+let musicFinal = document.getElementById("musicFinal");
+let musicSix = document.getElementById("musicSix");
+
+function stopAllMusic() {
+  musicFinal.pause();
+  musicFinal.currentTime = 0;
+
+  musicSix.pause();
+  musicSix.currentTime = 0;
+}
+
+  function nextScreen(num) {
+
+  document.querySelectorAll(".screen").forEach(s => 
+    s.classList.remove("active")
+  );
+
+  document.getElementById("screen" + num).classList.add("active");
+
+  stopAllMusic();
+
+  if(num == 4){
+    musicFinal.play().catch(() => {});
+  }
+
+  if(num == 6){
+    musicSix.play().catch(() => {});
+  }
+}
+
+
+// Select all album photos
+const photos = document.querySelectorAll('.photo img');
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+
+photos.forEach(photo => {
+  photo.style.cursor = 'pointer';
+  photo.addEventListener('click', e => {
+    modal.style.display = 'flex';
+    modalImg.src = e.target.src;
+  });
+});
+
+// Close modal when clicking outside the image
+modal.addEventListener('click', e => {
+  if (e.target !== modalImg) {
+    modal.style.display = 'none';
+  }
+});
+
+</script>
+</body>
+</html>
